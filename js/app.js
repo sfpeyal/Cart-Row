@@ -6,6 +6,8 @@ const loadProducts = () => {
     .then((data) => showProducts(data));
 
 };
+
+//calls function
 loadProducts();
 
 // show all product in UI 
@@ -17,18 +19,15 @@ const showProducts = (products) => {
     div.classList.add("product");
     div.innerHTML = `<div class="single-product">
       <div>
-    <img class="product-image" src=${image}></img>
+       <img class="product-image" src=${image}></img>
       </div>
-      <h3>${product.title}</h3>
-      <p>Category: ${product.category}</p>
-
-      <p>Rating: ${product.rating.rate}</p>
-      <p>Rate Count: ${product.rating.count}</p>
-
-
-      <h2>Price: $ ${product.price}</h2>
-      <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
-      <button onclick="addToCart(${product.id})" id="details-btn" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</button></div>
+      <h3>${product.title.slice(0, 24)}</h3>
+      <p class="fst-italic fw-bold">Category: ${product.category}</p>
+      <p class="fst-italic fw-bold">Rating: ${product.rating.rate}</p>
+      <p class="fst-italic fw-bold">Rate Count: ${product.rating.count}</p>
+      <h2 class="text-muted">Price: $ ${product.price}</h2>
+      <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-primary">add to cart <span><i class="fas fa-cart-plus"></i></span></button>
+      <button onclick="addToCart(${product.id})" id="details-btn" class="btn btn-warning text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</button></div>
       `;
     document.getElementById("all-products").appendChild(div);
   }
@@ -39,8 +38,6 @@ let count = 0;
 const addToCart = (id, price) => {
   count = count + 1;
   updatePrice("price", price);
-
-
   updateTaxAndCharge();
   document.getElementById("total-Products").innerText = count;
   updateTotal();
@@ -58,15 +55,11 @@ const updatePrice = (id, value) => {
   const convertedOldPrice = getInputValue(id);
   const convertPrice = parseFloat(value.toFixed(2));
   const total = convertedOldPrice + convertPrice;
-  // document.getElementById(id).innerText = Math.round(total);
-  //document.getElementById(id).innerText = total;
-
   document.getElementById(id).innerText = parseFloat(total.toFixed(2));
 };
 
 // set innerText function
 const setInnerText = (id, value) => {
-  // document.getElementById(id).innerText = Math.round(value);
   document.getElementById(id).innerText = value;
 };
 
