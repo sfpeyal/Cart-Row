@@ -27,7 +27,7 @@ const showProducts = (products) => {
       <p class="fst-italic fw-bold">Rate Count: ${product.rating.count}</p>
       <h2 class="text-muted">Price: $ ${product.price}</h2>
       <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-primary">add to cart <span><i class="fas fa-cart-plus"></i></span></button>
-      <button onclick="addToCart(${product.id})" id="details-btn" class="btn btn-warning text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</button></div>
+      <button id="details-btn" class="btn btn-warning text-white">Details</button></div>
       `;
     document.getElementById("all-products").appendChild(div);
   }
